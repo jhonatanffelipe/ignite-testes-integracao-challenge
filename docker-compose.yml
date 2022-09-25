@@ -3,7 +3,7 @@ version: '3.9'
 services:
   db:
     image: postgres
-    container_name: 'finances-db'
+    container_name: 'ignite-testes-integracao-challenge-db'
     environment:
       restart: never
       POSTGRES_PASSWORD: 123456
@@ -13,7 +13,7 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
-    container_name: 'finances-backend'
+    container_name: 'ignite-testes-integracao-challenge-backend'
     build: .
     command: yarn dev
     environment:
@@ -22,8 +22,8 @@ services:
       - '3000:3000'
       - '3001:3001'
     volumes:
-      - .:/src/app/finances-backend
-      - /src/app/finances-backend/node_modules
+      - .:/src/app/ignite-testes-integracao-challenge-backend
+      - /src/app/ignite-testes-integracao-challenge-backend/node_modules
     links:
       - db
     depends_on:
