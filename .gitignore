@@ -1,2 +1,11 @@
-node_modules
-coverage
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+#db
+/init.sql
