@@ -2,11 +2,19 @@ import { createConnection, getConnectionOptions } from 'typeorm';
 
 interface IOptions {
   host: string;
+  database?: string;
 }
 
 getConnectionOptions().then(options => {
   const newOptions = options as IOptions;
-  newOptions.host = process.env.DB_HOST ? process.env.DB_HOST : 'db'; //Essa opção deverá ser EXATAMENTE o nome dado ao service do banco de dados
+
+  newOptions.host = 'db';
+
+  newOptions.database =
+    process.env.NODE_ENV === 'test' ? 'fin_app_test' : newOptions.database;
+
+  console.log(options);
+
   createConnection({
     ...options,
   });
